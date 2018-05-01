@@ -1,3 +1,7 @@
+--Fibonacci Minimum Heap Priority Queue
+--Tyler Richard Hoyer
+--04/30/2018
+
 local FibHeap = {}
 FibHeap.__index = FibHeap
 
@@ -93,10 +97,8 @@ function FibHeap:decreaseKey(node, key)
 	assert(key < node.key, "FibHeap:decreaseKey() called with a larger key ("
 			.. key .. ") than the original (" .. node.key .. ")!")
 	node.key = key
-	print(key, self.min.key)
 	if key < self.min.key then
 		self.min = node
-		print("Setting min to: ", self.min.key)
 	end
 	local parent = node.parent
 	if parent and node.key < parent.key then
@@ -214,7 +216,6 @@ function FibHeap:__tostring()
 		recTostring(root, "\t", outputLines)
 		root = root.right
 	until root == self.min
-	print(#outputLines)
 	return table.concat(outputLines, "\n")
 end
 
